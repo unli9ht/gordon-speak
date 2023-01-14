@@ -1,13 +1,3 @@
-// * GREEN
-// TODO
-// ! ALARM
-// ? BLUE
-/**
- * MULTI
- * LINE
- * COMMENT
- */
-
 /**
  * Converts normal text into Gordon Speak
  * @returns
