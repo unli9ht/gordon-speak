@@ -23,23 +23,25 @@
             </header>
 
             <div class="gordon-speak-input">
-                <h2>Input text below to convert into Gordon Speak!</h2>
-                <p>What is Gordon Speak?</p>
-                <p>It replaces the first letter of a word with "g" and the last letter with "r".</p>
-                <p>If it the word only has one letter, it is replaced with "o".</p>
-                <p>The conversion takes into account capitalization, so a "W" would turn into a "G", where as a "w"
-                    would turn into a "g".</p>
+                <p class="gordon-speak-description">
+                    What is Gordon Speak?<br>
+                    It replaces the first letter of a word with "g" and the last letter with "r".<br>
+                    If it the word only has one letter, it is replaced with "o".<br>
+                    he conversion takes into account capitalization, so a "W" would turn into a "G", where as a "w"
+                    would turn into a "g".<br>
+                    Try it by inputting a sentence below!
+                </p>
 
-                <form onsubmit="displayConversion()">
-                    <input type="text" id="text-input" name="text-box">
+                <div class="gordon-section">
+                    <form onsubmit="displayConversion()">
+                        <input type="text" id="text-input" name="text-box">
 
-                    <button type="button" onclick="displayConversion()">Convert</button>
-                </form>
-            </div>
-
-            <div class="output">
-                <h2>Output Below</h2>
-                <p id="output"></p>
+                        <button type="button" onclick="displayConversion()">Convert</button>
+                    </form>
+                    <div class="output">
+                        <p id="output"></p>
+                    </div>
+                </div>
             </div>
         </div>
     </main>

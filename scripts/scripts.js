@@ -8,6 +8,10 @@
  * COMMENT
  */
 
+/**
+ * Converts normal text into Gordon Speak
+ * @returns
+ */
 function convertInputToGordonSpeak() {
      // Grabs text from input
      let textInputValue = document.getElementById("text-input").value;
@@ -20,47 +24,9 @@ function convertInputToGordonSpeak() {
      for (let i = 0; i < wordsToConvertArray.length; i++) {
           // If the element is only one letter
           if (wordsToConvertArray[i].length == 1) {
-               if (checkIfCapital(wordsToConvertArray[i])) {
-                    wordsToConvertArray[i] = "O";
-               } else {
-                    wordsToConvertArray[i] = "o";
-               }
+               capCheck(wordsToConvertArray[i]) ? (wordsToConvertArray[1] = "O") : (wordsToConvertArray[i] = "o");
           } else {
-               if (checkIfCapital(wordsToConvertArray[i])) {
-                    //* Strings are immutable in Javascript so have to do it this way
-                    let firstChar = "G";
-                    let middleChars = wordsToConvertArray[i].substring(1, wordsToConvertArray[i].length - 1);
-                    let lastChar = "";
-
-                    // ! Switch - doesn't work?
-                    // switch (checkIfCapital(wordsToConvertArray[i].substring(wordsToConvertArray[i].length - 1))) {
-                    //      case true:
-                    //           lastChar = "R";
-                    //      case false:
-                    //           lastChar = "r";
-                    // }
-
-                    // ! If - works?
-                    if (checkIfCapital(wordsToConvertArray[i].substring(wordsToConvertArray[i].length - 1))) {
-                         lastChar = "R";
-                    } else {
-                         lastChar = "r";
-                    }
-
-                    wordsToConvertArray[i] = firstChar + middleChars + lastChar;
-               } else {
-                    let firstChar = "g";
-                    let middleChars = wordsToConvertArray[i].substring(1, wordsToConvertArray[i].length - 1);
-                    let lastChar = "";
-
-                    if (checkIfCapital(wordsToConvertArray[i].substring(wordsToConvertArray[i].length - 1))) {
-                         lastChar = "R";
-                    } else {
-                         lastChar = "r";
-                    }
-
-                    wordsToConvertArray[i] = firstChar + middleChars + lastChar;
-               }
+               wordsToConvertArray[i] = replaceFirstAndLastLetterInAWord(wordsToConvertArray[i]);
           }
 
           convertedString += wordsToConvertArray[i] + " ";
@@ -69,6 +35,9 @@ function convertInputToGordonSpeak() {
      return convertedString;
 }
 
+/**
+ * Displays the output on screen
+ */
 function displayConversion() {
      // Prevents Enter key from refreshing page
      event.preventDefault();
@@ -77,6 +46,26 @@ function displayConversion() {
      document.getElementById("output").innerHTML = convertInputToGordonSpeak();
 }
 
-function checkIfCapital(string) {
-     return string.charAt(0) === string.charAt(0).toUpperCase();
+/**
+ * Expects a singular char for our usage
+ * @param {*} c
+ * @returns
+ */
+function capCheck(c) {
+     return c == c.toUpperCase();
+}
+
+/**
+ * Replaces the first letter of a word with the firstCharParam, and the last letter with either a capital "R" or lowercase "r"
+ * @param {*} firstCharParam The letter to replace the first letter with
+ * @param {*} word The word to manipulate
+ * @returns The word with replaced letter
+ */
+//* Strings are immutable in Javascript so have to do it this way
+function replaceFirstAndLastLetterInAWord(word) {
+     let first = capCheck(word[0]) ? "G" : "g";
+     let middle = word.substring(1, word.length - 1);
+     let last = capCheck(word[word.length - 1]) ? "R" : "r";
+
+     return first + middle + last;
 }
